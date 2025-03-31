@@ -13,6 +13,6 @@ class GetAllTransactionHistoryResult {
 
 protocol TransactionHistoryClient {
     
-    func getAllTransactionHistory(filter: GetAllTransactionHistoryFilter, pagination: PaginationModel) async throws -> GetAllTransactionHistoryResult
+    func getAllTransactionHistory(filter: GetAllTransactionHistoryFilter, pagination: PaginationModel, token: AuthenticationToken) async throws -> GetAllTransactionHistoryResult
 
 }
