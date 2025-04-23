@@ -1,5 +1,5 @@
 enum CardType {
-    case Mastercard
-    case Visa
-    case Mir
+    case mastercard
+    case visa
+    case mir
 }
