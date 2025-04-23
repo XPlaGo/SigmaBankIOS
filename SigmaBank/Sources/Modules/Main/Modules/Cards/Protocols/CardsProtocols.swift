@@ -1,0 +1,33 @@
+protocol CardsViewProtocol: AnyObject {
+
+    func show(accounts: [Account])
+
+}
+
+protocol CardsPresenterProtocol: AnyObject {
+
+    func viewDidLoad(view: CardsViewProtocol)
+
+    func presendCardModule(for card: Card)
+
+}
+
+protocol CardsInteractorInputProtocol: AnyObject {
+
+    func loadAcounts()
+
+}
+
+protocol CardsInteractorOutputProtocol: AnyObject {
+
+    func loadAccountsSuccess(account: [Account])
+
+    func loadAccountsFailure(error: Error)
+
+}
+
+protocol CardsRouterProtocol: AnyObject {
+
+    func goToCardModule(of card: Card)
+
+}
