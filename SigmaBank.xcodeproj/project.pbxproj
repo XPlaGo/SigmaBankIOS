@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A2E078D2D9AAF0E00BB6A09 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A2E078C2D9AAF0500BB6A09 /* README.md */; };
+		4A4313ADFEC1F03E3C3B2940 /* Pods_SigmaBank_SigmaBankUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 794673DA9D75822F82362EA2 /* Pods_SigmaBank_SigmaBankUITests.framework */; };
+		5D1C7AF4865F6E1083A2A9FE /* Pods_SigmaBank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2A079E56DDE96BF87CFF17 /* Pods_SigmaBank.framework */; };
+		E21E7306A2F13CE09C419332 /* Pods_SigmaBankTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4858FD651BFB952EDB2F6067 /* Pods_SigmaBankTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,10 +31,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19F5BD00A0089B6475173005 /* Pods-SigmaBank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBank.debug.xcconfig"; path = "Target Support Files/Pods-SigmaBank/Pods-SigmaBank.debug.xcconfig"; sourceTree = "<group>"; };
+		1A2A079E56DDE96BF87CFF17 /* Pods_SigmaBank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SigmaBank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D8657541D89EA4752ABA1BD /* Pods-SigmaBankTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBankTests.release.xcconfig"; path = "Target Support Files/Pods-SigmaBankTests/Pods-SigmaBankTests.release.xcconfig"; sourceTree = "<group>"; };
+		4858FD651BFB952EDB2F6067 /* Pods_SigmaBankTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SigmaBankTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2E078C2D9AAF0500BB6A09 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4A9EA91B2D7F050B00915C0A /* SigmaBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SigmaBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9EA9312D7F050C00915C0A /* SigmaBankTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SigmaBankTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9EA93B2D7F050C00915C0A /* SigmaBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SigmaBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		794673DA9D75822F82362EA2 /* Pods_SigmaBank_SigmaBankUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SigmaBank_SigmaBankUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DCFCA4D211EFD9832AC45FE /* Pods-SigmaBank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBank.release.xcconfig"; path = "Target Support Files/Pods-SigmaBank/Pods-SigmaBank.release.xcconfig"; sourceTree = "<group>"; };
+		868A916A52DC13CAD2CD97B8 /* Pods-SigmaBankTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBankTests.debug.xcconfig"; path = "Target Support Files/Pods-SigmaBankTests/Pods-SigmaBankTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B79A4214B97BDA80A4C0A0BF /* Pods-SigmaBank-SigmaBankUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBank-SigmaBankUITests.debug.xcconfig"; path = "Target Support Files/Pods-SigmaBank-SigmaBankUITests/Pods-SigmaBank-SigmaBankUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC678FE6D50E5BC4685EE3E1 /* Pods-SigmaBank-SigmaBankUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SigmaBank-SigmaBankUITests.release.xcconfig"; path = "Target Support Files/Pods-SigmaBank-SigmaBankUITests/Pods-SigmaBank-SigmaBankUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -55,11 +67,15 @@
 		};
 		4A9EA9342D7F050C00915C0A /* SigmaBankTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = SigmaBankTests;
 			sourceTree = "<group>";
 		};
 		4A9EA93E2D7F050C00915C0A /* SigmaBankUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = SigmaBankUITests;
 			sourceTree = "<group>";
 		};
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D1C7AF4865F6E1083A2A9FE /* Pods_SigmaBank.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21E7306A2F13CE09C419332 /* Pods_SigmaBankTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A4313ADFEC1F03E3C3B2940 /* Pods_SigmaBank_SigmaBankUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +117,8 @@
 				4A9EA9342D7F050C00915C0A /* SigmaBankTests */,
 				4A9EA93E2D7F050C00915C0A /* SigmaBankUITests */,
 				4A9EA91C2D7F050B00915C0A /* Products */,
+				F0C4D529840E278B9027348D /* Pods */,
+				57CB64F467F4D47C54D89DB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +132,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		57CB64F467F4D47C54D89DB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A2A079E56DDE96BF87CFF17 /* Pods_SigmaBank.framework */,
+				794673DA9D75822F82362EA2 /* Pods_SigmaBank_SigmaBankUITests.framework */,
+				4858FD651BFB952EDB2F6067 /* Pods_SigmaBankTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F0C4D529840E278B9027348D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19F5BD00A0089B6475173005 /* Pods-SigmaBank.debug.xcconfig */,
+				7DCFCA4D211EFD9832AC45FE /* Pods-SigmaBank.release.xcconfig */,
+				B79A4214B97BDA80A4C0A0BF /* Pods-SigmaBank-SigmaBankUITests.debug.xcconfig */,
+				FC678FE6D50E5BC4685EE3E1 /* Pods-SigmaBank-SigmaBankUITests.release.xcconfig */,
+				868A916A52DC13CAD2CD97B8 /* Pods-SigmaBankTests.debug.xcconfig */,
+				2D8657541D89EA4752ABA1BD /* Pods-SigmaBankTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A9EA9442D7F050C00915C0A /* Build configuration list for PBXNativeTarget "SigmaBank" */;
 			buildPhases = (
+				9FDDDE7D399A31889914D1FC /* [CP] Check Pods Manifest.lock */,
 				4A9EA9172D7F050B00915C0A /* Sources */,
 				4A9EA9182D7F050B00915C0A /* Frameworks */,
 				4A9EA9192D7F050B00915C0A /* Resources */,
+				190DDB7AC05B1B57BDDB91D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,8 +177,6 @@
 				4A9EA91D2D7F050B00915C0A /* SigmaBank */,
 			);
 			name = SigmaBank;
-			packageProductDependencies = (
-			);
 			productName = SigmaBank;
 			productReference = 4A9EA91B2D7F050B00915C0A /* SigmaBank.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +185,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A9EA9492D7F050C00915C0A /* Build configuration list for PBXNativeTarget "SigmaBankTests" */;
 			buildPhases = (
+				8436F909DDA58ACB6B0B04E8 /* [CP] Check Pods Manifest.lock */,
 				4A9EA92D2D7F050C00915C0A /* Sources */,
 				4A9EA92E2D7F050C00915C0A /* Frameworks */,
 				4A9EA92F2D7F050C00915C0A /* Resources */,
@@ -153,8 +199,6 @@
 				4A9EA9342D7F050C00915C0A /* SigmaBankTests */,
 			);
 			name = SigmaBankTests;
-			packageProductDependencies = (
-			);
 			productName = SigmaBankTests;
 			productReference = 4A9EA9312D7F050C00915C0A /* SigmaBankTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -163,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A9EA94C2D7F050C00915C0A /* Build configuration list for PBXNativeTarget "SigmaBankUITests" */;
 			buildPhases = (
+				CF9A40C760A20B2DC3F18F1D /* [CP] Check Pods Manifest.lock */,
 				4A9EA9372D7F050C00915C0A /* Sources */,
 				4A9EA9382D7F050C00915C0A /* Frameworks */,
 				4A9EA9392D7F050C00915C0A /* Resources */,
+				6BEB5B9B37DE172DF491E88C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,8 +222,6 @@
 				4A9EA93E2D7F050C00915C0A /* SigmaBankUITests */,
 			);
 			name = SigmaBankUITests;
-			packageProductDependencies = (
-			);
 			productName = SigmaBankUITests;
 			productReference = 4A9EA93B2D7F050C00915C0A /* SigmaBankUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -251,6 +295,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		190DDB7AC05B1B57BDDB91D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SigmaBank/Pods-SigmaBank-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SigmaBank/Pods-SigmaBank-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SigmaBank/Pods-SigmaBank-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BEB5B9B37DE172DF491E88C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SigmaBank-SigmaBankUITests/Pods-SigmaBank-SigmaBankUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SigmaBank-SigmaBankUITests/Pods-SigmaBank-SigmaBankUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SigmaBank-SigmaBankUITests/Pods-SigmaBank-SigmaBankUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8436F909DDA58ACB6B0B04E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SigmaBankTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FDDDE7D399A31889914D1FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SigmaBank-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF9A40C760A20B2DC3F18F1D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SigmaBank-SigmaBankUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4A9EA9172D7F050B00915C0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -291,6 +438,7 @@
 /* Begin XCBuildConfiguration section */
 		4A9EA9452D7F050C00915C0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F5BD00A0089B6475173005 /* Pods-SigmaBank.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -323,6 +471,7 @@
 		};
 		4A9EA9462D7F050C00915C0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DCFCA4D211EFD9832AC45FE /* Pods-SigmaBank.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -474,6 +623,7 @@
 		};
 		4A9EA94A2D7F050C00915C0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 868A916A52DC13CAD2CD97B8 /* Pods-SigmaBankTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -492,6 +642,7 @@
 		};
 		4A9EA94B2D7F050C00915C0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D8657541D89EA4752ABA1BD /* Pods-SigmaBankTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +661,7 @@
 		};
 		4A9EA94D2D7F050C00915C0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B79A4214B97BDA80A4C0A0BF /* Pods-SigmaBank-SigmaBankUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -526,6 +678,7 @@
 		};
 		4A9EA94E2D7F050C00915C0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC678FE6D50E5BC4685EE3E1 /* Pods-SigmaBank-SigmaBankUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
