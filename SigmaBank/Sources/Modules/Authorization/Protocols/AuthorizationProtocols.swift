@@ -1,3 +1,5 @@
+import UIKit
+
 protocol AuthorizationViewProtocol: AnyObject {
 
     func show()
@@ -7,10 +9,6 @@ protocol AuthorizationViewProtocol: AnyObject {
 protocol AuthorizationPresenterProtocol: AnyObject {
 
     func viewDidLoad(view: AuthorizationViewProtocol)
-
-    func presentPhoneNumberModule()
-
-    func presentMainModule()
 
 }
 
@@ -22,9 +20,9 @@ protocol AuthorizationInteractorInputProtocol: AnyObject {
 
 protocol AuthorizationInteractorOutputProtocol: AnyObject {
 
-    func userAuthenticationSuccess(_ user: User)
+    func userAuthenticationFound()
 
-    func userAuthenticationFailed(error: Error)
+    func userAuthenticationNotFound()
 
 }
 
@@ -33,5 +31,12 @@ protocol AuthorizationRouterProtocol: AnyObject {
     func goToPhoneNumberModule()
 
     func goToMainModule()
+
+}
+
+protocol AuthorizationBuilderProtocol: AnyObject {
+
+    func build(authenticationManager: AuthenticationManagerProtocol,
+               authenticationService: AuthenticationServiceProtocol) -> UIViewController
 
 }

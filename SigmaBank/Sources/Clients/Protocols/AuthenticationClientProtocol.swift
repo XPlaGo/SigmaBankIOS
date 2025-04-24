@@ -4,7 +4,7 @@ protocol AuthenticationClientProtocol {
 
     func confirmVerificationCode(code: String, token: AuthenticationToken) async throws -> ConfirmVerificationCodeResult
 
-    func register(for: RegisterModel, token: AuthenticationToken) async throws -> RegisterResult
+    func register(for: RegisterModel, token: AuthenticationToken) async throws -> UserRegisterResult
 
     func login(token: AuthenticationToken) async throws -> LoginResult
 

@@ -1,11 +1,7 @@
 protocol AuthenticationManagerProtocol {
 
-    func setCurrentUser(_ user: User?)
-
-    func currentUser() -> User?
-
-    func setCurrentAuthorizationToken(_ token: String?)
-
-    func currentAuthorizationToken() -> String?
+    func getCurrentContext() async -> AuthenticationContext?
+    
+    func setCurrentContext(_ context: AuthenticationContext?) async
 
 }

@@ -1,6 +1,5 @@
 enum AuthenticationToken {
-    case VerificationToken(String)
-    case ConfirmedToken(String)
-    case RegistratedToken(String)
-    case AuthorizatedToken(String)
+    case confirmationToken(String)
+    case confirmedToken(String)
+    case authorizedToken(String)
 }
