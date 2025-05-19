@@ -1,11 +1,10 @@
 protocol AuthenticationClientProtocol {
 
-    func sendVerificationCode(to phoneNumber: String) async throws -> SendVerificationCodeResult
+    func sendConfirmationCode(to phoneNumber: String) async throws -> SendConfirmationCodeClientResult
 
-    func confirmVerificationCode(code: String, token: AuthenticationToken) async throws -> ConfirmVerificationCodeResult
+    func confirm(code: String, token: String) async throws -> ConfirmClientResult?
 
-    func register(for: RegisterModel, token: AuthenticationToken) async throws -> UserRegisterResult
+    func register(userData: RegisterModel, token: String) async throws -> RegisterClientResult
 
-    func login(token: AuthenticationToken) async throws -> LoginResult
-
+    func login(token: String) async throws -> LoginClientResult
 }

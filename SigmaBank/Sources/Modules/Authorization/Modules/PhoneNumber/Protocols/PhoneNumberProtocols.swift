@@ -48,6 +48,6 @@ protocol PhoneNumberRouterProtocol: AnyObject {
 
 protocol PhoneNumberBuilderProtocol: AnyObject {
 
-    func build(authenticationService: AuthenticationServiceProtocol) -> UIViewController
+    func build() -> UIViewController
 
 }

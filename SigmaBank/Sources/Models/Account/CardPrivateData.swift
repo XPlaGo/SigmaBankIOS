@@ -1,4 +1,6 @@
+import Foundation
+
 struct CardPrivateData {
-    let cardExpirationDate: String
+    let cardExpirationDate: Date
     let cardCode: String
 }

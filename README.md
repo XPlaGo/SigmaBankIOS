@@ -40,3 +40,8 @@
     - Экран дополнительных функций
         - Экран профиля
         - Экран настроек
+
+```
+cd SigmaBank
+protoc Protos/auth.proto --swift_out=Generated --grpc-swift_out=Generated
+```

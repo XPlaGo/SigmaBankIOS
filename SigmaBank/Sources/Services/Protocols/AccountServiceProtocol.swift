@@ -2,6 +2,6 @@ protocol AccountServiceProtocol {
 
     func getAccounts() async throws -> [Account]
 
-    func getCardPrivateData(for cardNumber: CardNumber) async throws -> CardPrivateData
+    func getCardPrivateData(for cardId: CardId) async throws -> CardPrivateData
 
 }

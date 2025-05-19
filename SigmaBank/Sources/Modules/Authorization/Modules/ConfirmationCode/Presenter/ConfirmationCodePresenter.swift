@@ -34,7 +34,7 @@ extension ConfirmationCodePresenter: ConfirmationCodeInteractorOutputProtocol {
     func confirmSuccess() {
         self.view?.setLoading(false)
         self.view?.setConfirmError(error: nil)
-        self.router.goToMainModule()
+        self.interactor.login()
     }
     
     func confirmRegistrationRequired() {
@@ -46,6 +46,12 @@ extension ConfirmationCodePresenter: ConfirmationCodeInteractorOutputProtocol {
     func confirmError(error: ConfirmError) {
         self.view?.setLoading(false)
         self.view?.setConfirmError(error: error)
+    }
+    
+    func loginSuccess() {
+        self.view?.setLoading(false)
+        self.view?.setConfirmError(error: nil)
+        self.router.goToMainModule()
     }
 
 }

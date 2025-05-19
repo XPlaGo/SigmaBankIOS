@@ -3,7 +3,7 @@ protocol PayeeClientProtocol {
     func getPayeesBy(
         phoneNumberSubstring: String,
         pagination: PaginationModel,
-        token: AuthenticationToken) async throws -> GetPayeesbyPhoneNumberResult
+        token: AuthenticationToken) async throws -> GetPayeesbyPhoneNumberClientResult
 
     func getPayeeBy(
         cardNumber: CardNumber,

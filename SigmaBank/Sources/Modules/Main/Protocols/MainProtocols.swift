@@ -1,3 +1,5 @@
+import UIKit
+
 protocol MainViewProtocol: AnyObject {
 
     func show()
@@ -8,13 +10,13 @@ protocol MainPresenterProtocol: AnyObject {
 
     func viewDidLoad(view: MainViewProtocol)
 
-    func presentCardsModule()
+    func getCardsModule() -> UIViewController
 
-    func presentHistoryModule()
+    func getHistoryModule() -> UIViewController
 
-    func presentMoreModule()
+    func getMoreModule() -> UIViewController
 
-    func presentTransfersModule()
+    func getTransfersModule() -> UIViewController
 
 }
 
@@ -27,5 +29,19 @@ protocol MainInteractorOutputProtocol: AnyObject {
 }
 
 protocol MainRouterProtocol: AnyObject {
+
+    func getCardsModule() -> UIViewController
+    
+    func getHistoryModule() -> UIViewController
+
+    func getMoreModule() -> UIViewController
+
+    func getTransfersModule() -> UIViewController
+
+}
+
+protocol MainBuilderProtocol: AnyObject {
+
+    func build() -> UIViewController
 
 }

@@ -3,11 +3,15 @@ import UIKit
 class ConfirmationCodeRouter: ConfirmationCodeRouterProtocol {
 
     weak var viewController: UIViewController?
+    
+    private let accountService: AccountServiceProtocol
+    
+    init(accountService: AccountServiceProtocol) {
+        self.accountService = accountService
+    }
 
     func goToMainModule() {
-        let moduleController = UIViewController()
-        moduleController.title = "Main"
-        moduleController.view.backgroundColor = .systemBackground
+        let moduleController = MainBuilder(accountService: accountService).build()
         self.viewController?.navigationController?.setViewControllers([moduleController], animated: true)
     }
     

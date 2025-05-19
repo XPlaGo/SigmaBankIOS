@@ -21,6 +21,8 @@ protocol ConfirmationCodePresenterProtocol: AnyObject {
 protocol ConfirmationCodeInteractorInputProtocol: AnyObject {
 
     func confirm(code: String)
+    
+    func login()
 
 }
 
@@ -33,6 +35,8 @@ protocol ConfirmationCodeInteractorOutputProtocol: AnyObject {
     func confirmRegistrationRequired()
     
     func confirmError(error: ConfirmError)
+    
+    func loginSuccess()
 
 }
 
@@ -46,6 +50,6 @@ protocol ConfirmationCodeRouterProtocol: AnyObject {
 
 protocol ConfirmationCodeBuilderProtocol: AnyObject {
 
-    func build(authenticationService: AuthenticationServiceProtocol) -> UIViewController
+    func build() -> UIViewController
 
 }
