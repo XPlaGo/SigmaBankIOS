@@ -11,12 +11,16 @@ public class CardInteractor: @preconcurrency CardInteractorInputProtocol {
     @MainActor
     func loadPrivateData(for card: Card) {
         Task { [weak self] in
+            self?.output?.cardPrivateDataLoading(true)
+
             let cardPrivateData = try await self?.accountsService.getCardPrivateData(for: card.cardId)
             
             switch cardPrivateData {
             case .some(let privateData):
+                self?.output?.cardPrivateDataLoading(false)
                 self?.output?.cardPrivateDataLoaded(privateData: privateData)
             case .none:
+                self?.output?.cardPrivateDataLoading(false)
                 print("Error")
             }
         }

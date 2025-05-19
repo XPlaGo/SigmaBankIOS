@@ -112,9 +112,14 @@ extension CardViewController: CardViewProtocol {
         ])
     }
     
+    func cardPrivateDataLoading(_ enabled: Bool) {
+        showPrivateDataButton.configuration?.showsActivityIndicator = enabled
+    }
+    
     func showPrivateData(privateData: CardPrivateData) {
         self.privateData = privateData
         privateDataView.privateData = privateData
+        showPrivateDataButton.configuration?.showsActivityIndicator = false
         UIView.animate(withDuration: 0.3) { [self] in
             privateDataView.isHidden = false
             showPrivateDataButton.titleLabel?.text = "Hide private info"

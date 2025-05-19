@@ -3,6 +3,8 @@ import UIKit
 protocol CardsViewProtocol: AnyObject {
 
     func show(accounts: [Account])
+    
+    func showLoading()
 
 }
 
@@ -21,6 +23,8 @@ protocol CardsInteractorInputProtocol: AnyObject {
 }
 
 protocol CardsInteractorOutputProtocol: AnyObject {
+    
+    func accountsLoaging()
 
     func accountsLoaded(accounts: [Account])
 

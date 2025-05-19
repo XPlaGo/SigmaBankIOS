@@ -18,19 +18,24 @@ class CardPresenter: CardPresenterProtocol {
     }
     
     func loadPrivateData(for card: Card) {
-        self.interactor.loadPrivateData(for: card)
+        interactor.loadPrivateData(for: card)
     }
     
 }
 
 extension CardPresenter: CardInteractorOutputProtocol {
 
+    func cardPrivateDataLoading(_ enabled: Bool) {
+        view?.cardPrivateDataLoading(enabled)
+    }
+    
+
     func cardPrivateDataLoaded(privateData: CardPrivateData) {
-        self.view?.showPrivateData(privateData: privateData)
+        view?.showPrivateData(privateData: privateData)
     }
 
     func cardPrivateDataHided() {
-        self.view?.hidePrivateData()
+        view?.hidePrivateData()
     }
 
 }

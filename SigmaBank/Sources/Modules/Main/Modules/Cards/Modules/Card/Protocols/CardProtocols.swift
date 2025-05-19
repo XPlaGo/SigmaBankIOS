@@ -6,6 +6,8 @@ protocol CardViewProtocol: AnyObject {
     
     func showPrivateData(privateData: CardPrivateData)
     
+    func cardPrivateDataLoading(_ enabled: Bool)
+    
     func hidePrivateData()
 
 }
@@ -27,6 +29,8 @@ protocol CardInteractorInputProtocol: AnyObject {
 }
 
 protocol CardInteractorOutputProtocol: AnyObject {
+    
+    func cardPrivateDataLoading(_ enabled: Bool)
 
     func cardPrivateDataLoaded(privateData: CardPrivateData)
     

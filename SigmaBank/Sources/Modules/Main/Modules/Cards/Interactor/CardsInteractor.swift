@@ -11,6 +11,7 @@ public class CardsInteractor: @preconcurrency CardsInteractorInputProtocol {
     @MainActor
     func loadAcounts() {
         Task { [weak self] in
+            self?.output?.accountsLoaging()
 
             let accounts = try await self?.accountsService.getAccounts() ?? []
             

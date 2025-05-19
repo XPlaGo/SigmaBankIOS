@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         Task { [weak self] in
-            let clientConfig = GrpcClientConfig(host: "localhost", port: 8082)
+            let clientConfig = GrpcClientConfig(host: "92.242.60.133", port: 80)
 
             let authenticationClient = try await AuthenticationClient(config: clientConfig)
             let authenticationManager = AuthenticationManager()

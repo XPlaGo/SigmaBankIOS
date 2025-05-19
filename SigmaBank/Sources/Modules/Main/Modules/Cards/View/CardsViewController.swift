@@ -7,7 +7,7 @@ class CardsViewController: UIViewController {
     private var accounts: [Account] = []
     
     private lazy var indicator: UIActivityIndicatorView = {
-        var view = UIActivityIndicatorView(style: .large)
+        var view = UIActivityIndicatorView(style: .medium)
         return view
     }()
     
@@ -46,8 +46,10 @@ extension CardsViewController: CardsViewProtocol {
         self.accounts = accounts
 
         self.view.backgroundColor = .systemBackground
+        
+        indicator.stopAnimating()
 
-        self.view.addSubview(collectionView)
+        self.view.insertSubview(collectionView, at: 0)
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -55,6 +57,13 @@ extension CardsViewController: CardsViewProtocol {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    func showLoading() {
+        self.view.insertSubview(indicator, at: 0)
+        
+        indicator.startAnimating()
+        indicator.center = view.center
     }
     
 }

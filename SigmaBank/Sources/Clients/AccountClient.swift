@@ -64,7 +64,7 @@ public class AccountClient: AccountClientProtocol {
     ) async throws -> Result {
         return try await withGRPCClient(
             transport: .http2NIOPosix(
-                target: .dns(host: "localhost", port: 8082),
+                target: .dns(host: config.host, port: config.port),
                 transportSecurity: .plaintext
             )
         ) { client in

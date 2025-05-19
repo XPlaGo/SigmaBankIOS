@@ -25,8 +25,12 @@ class CardsPresenter: CardsPresenterProtocol {
 
 extension CardsPresenter: CardsInteractorOutputProtocol {
     
+    func accountsLoaging() {
+        view?.showLoading()
+    }
+    
     func accountsLoaded(accounts: [Account]) {
-        self.view?.show(accounts: accounts)
+        view?.show(accounts: accounts)
     }
 
 }
