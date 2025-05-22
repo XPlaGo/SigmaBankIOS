@@ -36,7 +36,6 @@ protocol AuthorizationRouterProtocol: AnyObject {
 
 protocol AuthorizationBuilderProtocol: AnyObject {
 
-    func build(authenticationManager: AuthenticationManagerProtocol,
-               authenticationService: AuthenticationServiceProtocol) -> UIViewController
+    func build() -> UIViewController
 
 }

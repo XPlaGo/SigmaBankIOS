@@ -1,6 +1,10 @@
+import UIKit
+
 protocol CardsViewProtocol: AnyObject {
 
     func show(accounts: [Account])
+    
+    func showLoading()
 
 }
 
@@ -19,15 +23,21 @@ protocol CardsInteractorInputProtocol: AnyObject {
 }
 
 protocol CardsInteractorOutputProtocol: AnyObject {
+    
+    func accountsLoaging()
 
-    func loadAccountsSuccess(account: [Account])
-
-    func loadAccountsFailure(error: Error)
+    func accountsLoaded(accounts: [Account])
 
 }
 
 protocol CardsRouterProtocol: AnyObject {
 
     func goToCardModule(of card: Card)
+
+}
+
+protocol CardsBuilderProtocol: AnyObject {
+    
+    func build() -> UIViewController
 
 }

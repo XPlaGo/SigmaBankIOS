@@ -6,6 +6,8 @@ protocol AuthenticationServiceProtocol {
 
     func register(user: UserRegistrationModel) async throws -> RegisterResult
     
+    func login() async throws -> LoginResult
+    
     func isAuthenticated() async -> Bool
 
 }

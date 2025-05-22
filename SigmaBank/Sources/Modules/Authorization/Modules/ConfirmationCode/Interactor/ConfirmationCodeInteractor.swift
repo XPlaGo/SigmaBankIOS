@@ -27,5 +27,14 @@ class ConfirmationCodeInteractor: @preconcurrency ConfirmationCodeInteractorInpu
             }
         }
     }
+    
+    @MainActor
+    func login() {
+        Task { [weak self] in
+            self?.output?.confirmLoading()
+            _ = try await self?.authenticationService.login()
+            self?.output?.loginSuccess()
+        }
+    }
 
 }

@@ -1,7 +1,7 @@
-protocol AccountClient {
+protocol AccountClientProtocol {
 
-    func getAccounts(token: AuthenticationToken) async throws -> [Account]
+    func getAccounts(token: String) async throws -> [Account]
 
-    func getCardPrivateData(for cardId: String, token: AuthenticationToken) async throws -> CardPrivateData
+    func getCardPrivateData(for cardId: Int, token: String) async throws -> CardPrivateData
 
 }

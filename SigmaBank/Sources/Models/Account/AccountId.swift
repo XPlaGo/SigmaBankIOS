@@ -1,3 +1,3 @@
 struct AccountId: Equatable, Hashable {
-    let value: String
+    let value: Int
 }
