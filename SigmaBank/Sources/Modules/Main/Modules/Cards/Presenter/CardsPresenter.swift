@@ -14,6 +14,7 @@ class CardsPresenter: CardsPresenterProtocol {
 
     func viewDidLoad(view: any CardsViewProtocol) {
         self.view = view
+        self.view?.show(accounts: [])
         interactor.loadAcounts()
     }
     
@@ -25,12 +26,13 @@ class CardsPresenter: CardsPresenterProtocol {
 
 extension CardsPresenter: CardsInteractorOutputProtocol {
     
-    func accountsLoaging() {
+    func accountsLoading() {
         view?.showLoading()
     }
     
     func accountsLoaded(accounts: [Account]) {
-        view?.show(accounts: accounts)
+        view?.hideLoading()
+        view?.setAccounts(accounts: accounts)
     }
 
 }

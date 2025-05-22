@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A2E078D2D9AAF0E00BB6A09 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A2E078C2D9AAF0500BB6A09 /* README.md */; };
+		4A7852CE2DDDED3C00BA9F6D /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7852CD2DDDED3C00BA9F6D /* SVProgressHUD */; };
+		4A7852EE2DDE628000BA9F6D /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7852ED2DDE628000BA9F6D /* Hero */; };
 		4A963BEB2DD1032300FC6D9E /* GRPCCodeGen in Frameworks */ = {isa = PBXBuildFile; productRef = 4A963BEA2DD1032300FC6D9E /* GRPCCodeGen */; };
 		4A963BED2DD1032300FC6D9E /* GRPCCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A963BEC2DD1032300FC6D9E /* GRPCCore */; };
 		4A963BEF2DD1032300FC6D9E /* GRPCInProcessTransport in Frameworks */ = {isa = PBXBuildFile; productRef = 4A963BEE2DD1032300FC6D9E /* GRPCInProcessTransport */; };
@@ -26,6 +28,7 @@
 		4AE30AFC2DD0F24F009E5BAE /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE30AFB2DD0F24F009E5BAE /* SwiftProtobuf */; };
 		4AE30AFE2DD0F24F009E5BAE /* SwiftProtobufPluginLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE30AFD2DD0F24F009E5BAE /* SwiftProtobufPluginLibrary */; };
 		4AE30B002DD0F24F009E5BAE /* protoc-gen-swift in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE30AFF2DD0F24F009E5BAE /* protoc-gen-swift */; };
+		4AEF6E942DDC796F00362E90 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 4AEF6E932DDC796F00362E90 /* SwinjectAutoregistration */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,14 +100,17 @@
 				4AE30AF52DD0E9BB009E5BAE /* GRPCInProcessTransport in Frameworks */,
 				4AE30AF32DD0E9BB009E5BAE /* GRPCCore in Frameworks */,
 				4AA87A062DD9AF1E004747FE /* GRPCNIOTransportHTTP2 in Frameworks */,
+				4AEF6E942DDC796F00362E90 /* SwinjectAutoregistration in Frameworks */,
 				4A963BF12DD106DA00FC6D9E /* SwiftProtobuf in Frameworks */,
 				4A963C102DD1299900FC6D9E /* GRPCProtobuf in Frameworks */,
 				4A963BED2DD1032300FC6D9E /* GRPCCore in Frameworks */,
 				4A963BEB2DD1032300FC6D9E /* GRPCCodeGen in Frameworks */,
 				4AE30AFC2DD0F24F009E5BAE /* SwiftProtobuf in Frameworks */,
 				4A963BEF2DD1032300FC6D9E /* GRPCInProcessTransport in Frameworks */,
+				4A7852CE2DDDED3C00BA9F6D /* SVProgressHUD in Frameworks */,
 				4AE30AEE2DD0E961009E5BAE /* IQKeyboardManagerSwift in Frameworks */,
 				4AE30B002DD0F24F009E5BAE /* protoc-gen-swift in Frameworks */,
+				4A7852EE2DDE628000BA9F6D /* Hero in Frameworks */,
 				4A963C122DD1299900FC6D9E /* protoc-gen-grpc-swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +257,9 @@
 				4AE30AFA2DD0F24F009E5BAE /* XCRemoteSwiftPackageReference "swift-protobuf" */,
 				4A963C062DD1183000FC6D9E /* XCRemoteSwiftPackageReference "grpc-swift-protobuf" */,
 				4AA87A042DD9AF1E004747FE /* XCRemoteSwiftPackageReference "grpc-swift-nio-transport" */,
+				4AEF6E922DDC796F00362E90 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				4A7852CC2DDDED3C00BA9F6D /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+				4A7852EC2DDE628000BA9F6D /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A9EA91C2D7F050B00915C0A /* Products */;
@@ -641,6 +650,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4A7852CC2DDDED3C00BA9F6D /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
+		4A7852EC2DDE628000BA9F6D /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.4;
+			};
+		};
 		4A963C062DD1183000FC6D9E /* XCRemoteSwiftPackageReference "grpc-swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grpc/grpc-swift-protobuf";
@@ -681,9 +706,27 @@
 				minimumVersion = 1.29.0;
 			};
 		};
+		4AEF6E922DDC796F00362E90 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/SwinjectAutoregistration";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4A7852CD2DDDED3C00BA9F6D /* SVProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A7852CC2DDDED3C00BA9F6D /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
+			productName = SVProgressHUD;
+		};
+		4A7852ED2DDE628000BA9F6D /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A7852EC2DDE628000BA9F6D /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
+		};
 		4A963BEA2DD1032300FC6D9E /* GRPCCodeGen */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AE30AEF2DD0E9BB009E5BAE /* XCRemoteSwiftPackageReference "grpc-swift" */;
@@ -773,6 +816,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AE30AFA2DD0F24F009E5BAE /* XCRemoteSwiftPackageReference "swift-protobuf" */;
 			productName = "protoc-gen-swift";
+		};
+		4AEF6E932DDC796F00362E90 /* SwinjectAutoregistration */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AEF6E922DDC796F00362E90 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
+			productName = SwinjectAutoregistration;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

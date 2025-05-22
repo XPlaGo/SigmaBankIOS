@@ -13,6 +13,7 @@ class AuthorizationInteractor: @preconcurrency AuthorizationInteractorInputProto
     @MainActor
     func checkCurrentUserAuthentication() {
         Task { [weak self] in
+            self?.output?.loadingAuthentication()
             if await self?.authenticationService.isAuthenticated() ?? false {
                 self?.output?.userAuthenticationFound()
             } else {

@@ -16,7 +16,10 @@ class AuthorizationBuilder: AuthorizationBuilderProtocol {
 
     func build() -> UIViewController {
         
-        let router = AuthorizationRouter(authenticationService: authenticationService, accountService: accountService)
+        let router = AuthorizationRouter(
+            authenticationManager: authenticationManager,
+            authenticationService: authenticationService,
+            accountService: accountService)
         let interactor = AuthorizationInteractor(authenticationService: authenticationService)
         let presenter = AuthorizationPresenter(router: router, interactor: interactor)
         let view = AuthorizationViewController(presenter: presenter)

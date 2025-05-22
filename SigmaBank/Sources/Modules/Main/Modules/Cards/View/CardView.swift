@@ -2,46 +2,73 @@ import UIKit
 
 public class CardView: UIView {
     
-    weak var presenter: CardsPresenterProtocol?
+    var cardAction: ((Card) -> Void)?
 
     var card: Card? {
         didSet {
             guard card != nil else {
                 return
             }
-            numberLabel.text = "\(card?.cardNumber.value.suffix(4) ?? "****")"
-            typeLabel.text = switch card?.cardType {
+            numberLabel.setText("\(card?.cardNumber.value.suffix(4) ?? "****")")
+            
+            let type = switch card?.cardType {
             case .mastercard: "MC";
             case .visa: "VISA";
             case .mir: "MIR";
             default:
                 "*"
             }
+            typeLabel.setText(type)
+            
+            setupHero()
         }
     }
     
-    private lazy var numberLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "****"
-        label.font = .systemFont(ofSize: 12, weight: .bold)
-        label.textColor = .white
-        return label
-    }()
-    
-    private lazy var typeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "*"
-        label.font = .systemFont(ofSize: 10, weight: .bold)
-        label.textColor = .white
-        return label
-    }()
-    
-    private lazy var cardStackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var numberLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "****",
+            style: .primary,
+            size: .labelLarge,
+            alignment: .left)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
+        return view
+    }()
+    
+    private lazy var typeLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "*",
+            style: .primary,
+            size: .labelLarge,
+            alignment: .left)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardStackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .horizontal,
+            items: [numberLabel, typeLabel],
+            size: .small,
+            distribution: .fill)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardView: DSCard = {
+        let viewModel = DSCardViewModel(
+            content: cardStackView,
+            style: .primary,
+            size: .small,
+            showShadow: false)
+        let view = DSCard()
+        view.configure(with: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -61,25 +88,30 @@ public class CardView: UIView {
         self.addGestureRecognizer(tap)
         self.isUserInteractionEnabled = true
     }
+    
+    private func setupHero() {
+        if card != nil {
+            let prefix = "card=\(card!.cardId.value)"
+            cardView.hero.id = prefix
+        }
+    }
 
 }
 
 extension CardView {
     func show() {
-        
         self.layer.cornerRadius = 5
         self.backgroundColor = .systemBlue
 
-        self.addSubview(cardStackView)
-
-        cardStackView.addArrangedSubview(numberLabel)
-        cardStackView.addArrangedSubview(typeLabel)
+        self.addSubview(cardView)
+        
+        setupHero()
 
         NSLayoutConstraint.activate([
-            cardStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            cardStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            cardStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            cardStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            cardView.topAnchor.constraint(equalTo: topAnchor),
+            cardView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            cardView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
     
@@ -89,7 +121,7 @@ extension CardView {
         case .none:
             print("Error")
         case .some(let card):
-            self.presenter?.presendCardModule(for: card)
+            cardAction?(card)
         }
     }
 }

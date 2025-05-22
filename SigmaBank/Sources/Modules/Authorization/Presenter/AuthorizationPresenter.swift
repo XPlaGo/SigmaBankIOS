@@ -23,12 +23,18 @@ class AuthorizationPresenter: AuthorizationPresenterProtocol {
 }
 
 extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
+    
+    func loadingAuthentication() {
+        view?.showLoading()
+    }
 
     func userAuthenticationFound() {
+        view?.hideLoading()
         router.goToMainModule()
     }
     
     func userAuthenticationNotFound() {
+        view?.hideLoading()
         router.goToPhoneNumberModule()
     }
 

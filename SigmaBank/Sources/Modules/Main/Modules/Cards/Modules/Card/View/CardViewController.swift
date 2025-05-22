@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD
 
 class CardViewController: UIViewController {
     
@@ -9,9 +10,70 @@ class CardViewController: UIViewController {
     
     private var showPrivateData: Bool = false
     
-    private lazy var cart: CardCartView = {
-        let view = CardCartView()
-        view.card = card
+    private lazy var numberLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "***\(card.cardNumber.value.suffix(4))",
+            style: .primary,
+            size: .headerLarge,
+            alignment: .left)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var typeLabel: DSLabel = {
+        let text = switch card.cardType {
+        case .mastercard: "MC";
+        case .visa: "VISA";
+        case .mir: "MIR";
+        default:
+            "*"
+        }
+        
+        let viewModel = DSLabelViewModel(
+            text: text,
+            style: .primary,
+            size: .headerLarge,
+            alignment: .left)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardStackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .horizontal,
+            items: [numberLabel, typeLabel],
+            size: .medium)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardView: DSCard = {
+        let viewModel = DSCardViewModel(
+            content: cardStackView,
+            style: .primary,
+            size: .large,
+            showShadow: true)
+        let view = DSCard()
+        view.configure(with: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardInfoLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "Card Info",
+            style: .ghost,
+            size: .headerMedium,
+            alignment: .left)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -21,36 +83,40 @@ class CardViewController: UIViewController {
         return view
     }()
     
-    private lazy var showPrivateDataButton: UIButton = {
-        var config = UIButton.Configuration.gray()
-        config.buttonSize = .medium
-        config.title = "Show private info"
-        config.image = UIImage(systemName: "eye")
-        config.imagePadding = 6
-        config.baseForegroundColor = .label
-        config.cornerStyle = .large
-        let button = UIButton(configuration: config)
+    private lazy var showPrivateDataButton: DSButton = {
+        let viewModel = DSButtonViewModel(
+            title: "Show private info",
+            size: .large,
+            style: .secondary,
+            image: UIImage(systemName: "eye"),
+        )
+        let button = DSButton()
+        button.configure(with: viewModel)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(togglePrivateData), for: .touchUpInside)
         return button
     }()
     
-    private lazy var spacer: UIView = {
-        let view = UIView()
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+    private lazy var spacer: DSSpacer = {
+        return DSSpacer()
+    }()
+    
+    private lazy var stackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .vertical,
+            items: [cardView, cardInfoLabel, privateDataView, showPrivateDataButton, spacer],
+            size: .large,
+            distribution: .fill)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.distribution = .fill
-        view.alignment = .fill
-        view.axis = .vertical
-        view.spacing = 16
-        return view
-    }()
+    private func setupHero() {
+        let prefix = "card=\(card.cardId.value)"
+        cardView.hero.id = prefix
+    }
     
     init(card: Card, presenter: CardPresenterProtocol) {
         self.card = card
@@ -88,19 +154,18 @@ extension CardViewController {
 extension CardViewController: CardViewProtocol {
 
     func show(card: Card) {
+        self.hero.isEnabled = true
+
         self.title = "Details"
         self.card = card
+        
+        setupHero()
 
         self.view.backgroundColor = .systemBackground
 
         self.view.addSubview(stackView)
         
         privateDataView.isHidden = !showPrivateData
-        
-        stackView.addArrangedSubview(cart)
-        stackView.addArrangedSubview(privateDataView)
-        stackView.addArrangedSubview(showPrivateDataButton)
-        stackView.addArrangedSubview(spacer)
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -108,18 +173,20 @@ extension CardViewController: CardViewProtocol {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            cart.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75, constant: -45),
+            cardView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75, constant: -45),
         ])
     }
     
     func cardPrivateDataLoading(_ enabled: Bool) {
-        showPrivateDataButton.configuration?.showsActivityIndicator = enabled
+        SVProgressHUD.show()
+        SVProgressHUD.setBackgroundColor(DSColors.secondary)
+        SVProgressHUD.setForegroundColor(DSColors.secondaryText)
     }
     
     func showPrivateData(privateData: CardPrivateData) {
+        SVProgressHUD.dismiss()
         self.privateData = privateData
         privateDataView.privateData = privateData
-        showPrivateDataButton.configuration?.showsActivityIndicator = false
         UIView.animate(withDuration: 0.3) { [self] in
             privateDataView.isHidden = false
             showPrivateDataButton.titleLabel?.text = "Hide private info"
