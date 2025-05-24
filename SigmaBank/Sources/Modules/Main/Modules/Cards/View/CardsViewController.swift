@@ -1,27 +1,39 @@
 import UIKit
+import SVProgressHUD
 
 class CardsViewController: UIViewController {
     
     private let presenter: CardsPresenterProtocol
     
-    private var accounts: [Account] = []
+    var accounts: [Account] = []
     
-    private lazy var indicator: UIActivityIndicatorView = {
-        var view = UIActivityIndicatorView(style: .medium)
-        return view
-    }()
-    
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: UIScreen.main.bounds.width, height: 190)
-
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        view.register(AccountCellView.self, forCellWithReuseIdentifier: "AccountCell")
+    private lazy var listView: DSList = {
+        let items = accounts.map(mapAccountToView)
+        
+        let viewModel = DSListViewModel(
+            direction: .vertical,
+            items: items,
+            size: .large,
+            style: .content,
+            filling: .fill,
+            itemLength: 200,
+            itemIdentifier: "AccountCell",
+        )
+        
+        let view = DSList(frame: .zero)
+        view.configure(with: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.dataSource = self
+        
         return view
     }()
+    
+    private func mapAccountToView(_ account: Account) -> UIView {
+        let accountView = AccountView()
+        accountView.translatesAutoresizingMaskIntoConstraints = false
+        accountView.cardAction = onCardTapped
+        accountView.account = account
+        return accountView
+    }
     
     init(presenter: CardsPresenterProtocol) {
         self.presenter = presenter
@@ -40,46 +52,42 @@ class CardsViewController: UIViewController {
     
 }
 
-extension CardsViewController: CardsViewProtocol {
-
-    func show(accounts: [Account]) {
-        self.accounts = accounts
-
-        self.view.backgroundColor = .systemBackground
-        
-        indicator.stopAnimating()
-
-        self.view.insertSubview(collectionView, at: 0)
-
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
+extension CardsViewController {
     
-    func showLoading() {
-        self.view.insertSubview(indicator, at: 0)
-        
-        indicator.startAnimating()
-        indicator.center = view.center
+    private func onCardTapped(card: Card) {
+        presenter.presendCardModule(for: card)
     }
     
 }
 
-extension CardsViewController: UICollectionViewDataSource {
+extension CardsViewController: CardsViewProtocol {
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        accounts.count
+    func show(accounts: [Account]) {
+        self.accounts = accounts
+        
+        view.addSubview(listView)
+
+        NSLayoutConstraint.activate([
+            listView.topAnchor.constraint(equalTo: view.topAnchor),
+            listView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            listView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = self.accounts[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCell", for: indexPath) as! AccountCellView
-        cell.presenter = self.presenter
-        cell.account = item
-        return cell
+    func showLoading() {
+        SVProgressHUD.show()
+        SVProgressHUD.setBackgroundColor(DSColors.secondary)
+        SVProgressHUD.setForegroundColor(DSColors.secondaryText)
+    }
+    
+    func hideLoading() {
+        SVProgressHUD.dismiss()
+    }
+    
+    func setAccounts(accounts: [Account]) {
+        self.accounts = accounts
+        self.listView.setItems(accounts.map(mapAccountToView))
     }
     
 }

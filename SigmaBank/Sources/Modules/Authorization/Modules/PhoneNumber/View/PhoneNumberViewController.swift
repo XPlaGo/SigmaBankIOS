@@ -12,20 +12,27 @@ class PhoneNumberViewController: UIViewController {
         return view
     }()
 
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var stackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .vertical,
+            items: [logoImage, nameLabel, horizontalStackView, errorLabel],
+            size: .large,
+            alignment: .center)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.spacing = 24
-        view.alignment = .center
         return view
     }()
 
-    private lazy var horizontalStackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var horizontalStackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .horizontal,
+            items: [phoneNumberField, continueButton],
+            size: .small,
+            distribution: .fill)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.spacing = 16
         return view
     }()
 
@@ -39,27 +46,34 @@ class PhoneNumberViewController: UIViewController {
         return view
     }()
 
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Enter phone number"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textAlignment = .center
-        return label
+    private lazy var nameLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "Enter phone number",
+            style: .content,
+            size: .headerSmall,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var phoneNumberField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Your Phone Number"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .numbersAndPunctuation
-        textField.clearButtonMode = .whileEditing
-        textField.backgroundColor = .systemGray6
-        textField.addTarget(
+        let viewModel = DSInputViewModel(
+            style: .secondary,
+            size: .medium,
+            placeholder: "Your Phone Number",
+            image: UIImage(systemName: "phone.fill"),
+            isEnabled: true)
+        let view = DSInput()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(
             self,
             action: #selector(onPhoneNumberFieldValueChanged(_:)),
             for: .editingChanged)
-        return textField
+        
+        return view
     }()
 
     private lazy var errorLabel: UILabel = {
@@ -72,15 +86,12 @@ class PhoneNumberViewController: UIViewController {
     }()
 
     private lazy var continueButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-
-        config.image = UIImage(systemName: "arrow.right")
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.buttonSize = .medium
-        config.cornerStyle = .medium
-
-        let button = UIButton(configuration: config)
+        let viewModel = DSButtonViewModel(
+            style: .primary,
+            image: UIImage(systemName: "arrow.right"),
+        )
+        let button = DSButton()
+        button.configure(with: viewModel)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         return button
@@ -122,11 +133,6 @@ extension PhoneNumberViewController: PhoneNumberViewProtocol {
 
         contentView.addSubview(stackView)
 
-        stackView.addArrangedSubview(logoImage)
-        stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(horizontalStackView)
-        stackView.addArrangedSubview(errorLabel)
-
         NSLayoutConstraint.activate([
             logoImage.widthAnchor.constraint(equalToConstant: 128),
             logoImage.heightAnchor.constraint(equalToConstant: 128),
@@ -136,9 +142,6 @@ extension PhoneNumberViewController: PhoneNumberViewProtocol {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
         ])
-
-        horizontalStackView.addArrangedSubview(phoneNumberField)
-        horizontalStackView.addArrangedSubview(continueButton)
 
         NSLayoutConstraint.activate([
             horizontalStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor),

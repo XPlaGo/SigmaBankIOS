@@ -12,19 +12,27 @@ class ConfirmationCodeViewController: UIViewController {
         return view
     }()
 
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var stackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .vertical,
+            items: [logoImage, confirmationLabel, horizontalStackView, errorCard],
+            size: .large,
+            alignment: .center)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.spacing = 24
         return view
     }()
     
-    private lazy var horizontalStackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var horizontalStackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .horizontal,
+            items: [confirmationCodeField, continueButton],
+            size: .small,
+            distribution: .fill)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.spacing = 16
         return view
     }()
 
@@ -37,48 +45,66 @@ class ConfirmationCodeViewController: UIViewController {
         return view
     }()
     
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Enter confirmation code"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textAlignment = .center
-        return label
+    private lazy var confirmationLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "Enter confirmation code",
+            style: .content,
+            size: .headerSmall,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private lazy var phoneNumberField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Confirmation Code"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .phonePad
-        textField.clearButtonMode = .whileEditing
-        textField.backgroundColor = .systemGray6
-        textField.addTarget(
+    private lazy var confirmationCodeField: UITextField = {
+        let viewModel = DSInputViewModel(
+            style: .secondary,
+            size: .medium,
+            placeholder: "Confirmation Code",
+            image: UIImage(systemName: "key.fill"),
+            isEnabled: true)
+        let view = DSInput()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(
             self,
-            action: #selector(onPhoneNumberFieldValueChanged(_:)),
+            action: #selector(onConfirmationCodeFieldValueChanged(_:)),
             for: .editingChanged)
-        return textField
+        return view
     }()
     
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .systemRed
-        label.textAlignment = .center
-        return label
+    private lazy var errorCard: DSCard = {
+        let viewModel = DSCardViewModel(
+            content: errorLabel,
+            style: .danger,
+            size: .small,
+            showShadow: false)
+        let view = DSCard()
+        view.configure(with: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var errorLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "",
+            style: .danger,
+            size: .bodyMedium,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var continueButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-
-        config.image = UIImage(systemName: "checkmark")
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
-        config.buttonSize = .medium
-        config.cornerStyle = .medium
-
-        let button = UIButton(configuration: config)
+        let viewModel = DSButtonViewModel(
+            style: .primary,
+            image: UIImage(systemName: "arrow.right"),
+        )
+        let button = DSButton()
+        button.configure(with: viewModel)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         return button
@@ -108,6 +134,7 @@ extension ConfirmationCodeViewController: ConfirmationCodeViewProtocol {
         view.backgroundColor = .systemBackground
 
         navigationItem.title = "Confirm"
+        errorCard.isHidden = true
 
         view.addSubview(contentView)
 
@@ -120,11 +147,6 @@ extension ConfirmationCodeViewController: ConfirmationCodeViewProtocol {
         ])
 
         contentView.addSubview(stackView)
-
-        stackView.addArrangedSubview(logoImage)
-        stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(horizontalStackView)
-        stackView.addArrangedSubview(errorLabel)
         
         NSLayoutConstraint.activate([
             logoImage.widthAnchor.constraint(equalToConstant: 128),
@@ -135,9 +157,6 @@ extension ConfirmationCodeViewController: ConfirmationCodeViewProtocol {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
         ])
-        
-        horizontalStackView.addArrangedSubview(phoneNumberField)
-        horizontalStackView.addArrangedSubview(continueButton)
 
         NSLayoutConstraint.activate([
             horizontalStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
@@ -147,13 +166,16 @@ extension ConfirmationCodeViewController: ConfirmationCodeViewProtocol {
     }
 
     func setConfirmError(error: ConfirmError?) {
-        let text: String = switch error {
-        case .some(_):
-            "Invalid confirmation code"
-        case .none:
-            ""
+        UIView.animate(withDuration: 0.1) {
+            switch error {
+            case .some(_):
+                self.errorCard.isHidden = false
+                self.errorLabel.setText("Invalid confirmation code")
+            case .none:
+                self.errorCard.isHidden = true
+                self.errorLabel.setText("")
+            }
         }
-        self.errorLabel.text = text
     }
 
     func setLoading(_ loading: Bool) {
@@ -164,7 +186,7 @@ extension ConfirmationCodeViewController: ConfirmationCodeViewProtocol {
         presenter.confirm(code: self.confirmationCode)
     }
     
-    @objc private func onPhoneNumberFieldValueChanged(_ textField: UITextField) {
+    @objc private func onConfirmationCodeFieldValueChanged(_ textField: UITextField) {
         self.confirmationCode = textField.text ?? ""
     }
 }

@@ -86,6 +86,10 @@ class AuthenticationService: AuthenticationServiceProtocol {
             throw AuthenticationError.invalidContext
         }
     }
+    
+    func logout() async throws {
+        await self.manager.setCurrentContext(nil)
+    }
 
     func isAuthenticated() async -> Bool {
         let context = await self.manager.getCurrentContext()

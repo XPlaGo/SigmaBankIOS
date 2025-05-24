@@ -1,13 +1,9 @@
 import UIKit
+import SVProgressHUD
 
 class AuthorizationViewController: UIViewController {
     
     private let presenter: AuthorizationPresenterProtocol
-    
-    private lazy var indicator: UIActivityIndicatorView = {
-        var view = UIActivityIndicatorView(style: .large)
-        return view
-    }()
     
     init(presenter: AuthorizationPresenterProtocol) {
         self.presenter = presenter
@@ -30,11 +26,16 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
 
     func show() {
         self.view.backgroundColor = .systemBackground
-
-        self.view.addSubview(indicator)
-        
-        indicator.startAnimating()
-        indicator.center = view.center
+    }
+    
+    func showLoading() {
+        SVProgressHUD.show(withStatus: "Authenticating")
+        SVProgressHUD.setBackgroundColor(DSColors.secondary)
+        SVProgressHUD.setForegroundColor(DSColors.secondaryText)
+    }
+    
+    func hideLoading() {
+        SVProgressHUD.dismiss()
     }
 
 }

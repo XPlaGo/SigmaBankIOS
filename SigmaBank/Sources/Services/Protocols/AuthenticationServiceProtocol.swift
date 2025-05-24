@@ -8,6 +8,8 @@ protocol AuthenticationServiceProtocol {
     
     func login() async throws -> LoginResult
     
+    func logout() async throws
+    
     func isAuthenticated() async -> Bool
 
 }

@@ -5,6 +5,7 @@ class MainViewController: UIViewController {
     
     private lazy var tabBar: UITabBar = {
         let view = UITabBar()
+        view.layer.backgroundColor = DSColors.background.cgColor
         return view
     }()
     

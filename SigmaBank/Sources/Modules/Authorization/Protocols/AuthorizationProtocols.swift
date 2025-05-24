@@ -3,6 +3,10 @@ import UIKit
 protocol AuthorizationViewProtocol: AnyObject {
 
     func show()
+    
+    func showLoading()
+    
+    func hideLoading()
 
 }
 
@@ -19,6 +23,8 @@ protocol AuthorizationInteractorInputProtocol: AnyObject {
 }
 
 protocol AuthorizationInteractorOutputProtocol: AnyObject {
+    
+    func loadingAuthentication()
 
     func userAuthenticationFound()
 

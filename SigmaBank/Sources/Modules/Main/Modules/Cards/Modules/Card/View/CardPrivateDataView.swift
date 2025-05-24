@@ -9,7 +9,7 @@ public class CardPrivateDataView: UIView {
             guard card != nil else {
                 return
             }
-            numberLabel.text = "\(card?.cardNumber.value ?? "****-****-****-****")"
+            numberLabel.setText("\(card?.cardNumber.value ?? "****-****-****-****")")
         }
     }
 
@@ -24,53 +24,83 @@ public class CardPrivateDataView: UIView {
             if (expDate != nil) {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MM/yy"
-                expirityLabel.text = formatter.string(from: expDate!)
+                expirityLabel.setText(formatter.string(from: expDate!))
             }
 
-            codeLabel.text = "\(privateData?.cardCode ?? "***")"
+            codeLabel.setText("\(privateData?.cardCode ?? "***")")
         }
     }
     
-    private lazy var numberLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "****-****-****-****"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .label
-        return label
-    }()
-    
-    private lazy var expirityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "**/**"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .label
-        return label
-    }()
-
-    private lazy var codeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "***"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .label
-        return label
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
+    private lazy var numberLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "****-****-****-****",
+            style: .content,
+            size: .bodyLarge,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.spacing = 8
         return view
     }()
     
-    private lazy var stackSubView: UIStackView = {
-        let view = UIStackView()
+    private lazy var expirityLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "**/**",
+            style: .content,
+            size: .bodyLarge,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.spacing = 8
+        return view
+    }()
+
+    private lazy var codeLabel: DSLabel = {
+        let viewModel = DSLabelViewModel(
+            text: "***",
+            style: .content,
+            size: .bodyLarge,
+            alignment: .center)
+        let view = DSLabel()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var stackView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .vertical,
+            items: [numberLabel, stackSubView],
+            size: .medium,
+            alignment: .fill)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var stackSubView: DSStack = {
+        let viewModel = DSStackViewModel(
+            axis: .horizontal,
+            items: [expirityLabel, codeLabel],
+            size: .small,
+            distribution: .fillEqually)
+        let view = DSStack()
+        view.configure(viewModel: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cardView: DSCard = {
+        let viewModel = DSCardViewModel(
+            content: stackView,
+            style: .content,
+            size: .large,
+            showShadow: false
+        )
+        let view = DSCard()
+        view.configure(with: viewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -87,23 +117,13 @@ public class CardPrivateDataView: UIView {
 
 extension CardPrivateDataView {
     func show() {
-        
-        self.layer.cornerRadius = 20
-        self.backgroundColor = .systemGray5
-
-        self.addSubview(stackView)
-
-        stackView.addArrangedSubview(numberLabel)
-        stackView.addArrangedSubview(stackSubView)
-
-        stackSubView.addArrangedSubview(expirityLabel)
-        stackSubView.addArrangedSubview(codeLabel)
+        self.addSubview(cardView)
 
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            cardView.topAnchor.constraint(equalTo: topAnchor),
+            cardView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            cardView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 }

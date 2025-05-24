@@ -5,6 +5,10 @@ protocol CardsViewProtocol: AnyObject {
     func show(accounts: [Account])
     
     func showLoading()
+    
+    func hideLoading()
+    
+    func setAccounts(accounts: [Account])
 
 }
 
@@ -24,7 +28,7 @@ protocol CardsInteractorInputProtocol: AnyObject {
 
 protocol CardsInteractorOutputProtocol: AnyObject {
     
-    func accountsLoaging()
+    func accountsLoading()
 
     func accountsLoaded(accounts: [Account])
 
