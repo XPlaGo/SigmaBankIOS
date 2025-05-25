@@ -27,8 +27,7 @@ class BDPresenter: BDPresenterProtocol {
 
 }
 
-@MainActor
-extension BDPresenter: @preconcurrency BDInteractorOutputProtocol {
+extension BDPresenter: BDInteractorOutputProtocol {
 
     func loadingScreen() {
         view?.showLoading()

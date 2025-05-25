@@ -1,6 +1,6 @@
 import Foundation
 
-class BDInteractor: BDInteractorInputProtocol {
+class BDInteractor: @preconcurrency BDInteractorInputProtocol {
 
     weak var output: BDInteractorOutputProtocol?
     
