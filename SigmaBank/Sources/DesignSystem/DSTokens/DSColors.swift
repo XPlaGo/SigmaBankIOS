@@ -13,4 +13,5 @@ struct DSColors {
     static let backgroundText = UIColor.label
     static let content = UIColor(red: 0, green: 0, blue: 0, alpha: 0.06)
     static let contentText = UIColor.label
+    static let success = UIColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 1)
 }

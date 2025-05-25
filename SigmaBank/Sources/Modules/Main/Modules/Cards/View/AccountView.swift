@@ -19,7 +19,8 @@ public class AccountView: UIView {
             text: "***",
             style: .ghost,
             size: .headerSmall,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false

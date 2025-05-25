@@ -5,9 +5,9 @@ import GRPCNIOTransportHTTP2
 
 public class AccountClient: AccountClientProtocol {
     
-    private let config: GrpcClientConfig
+    private let config: ClientConfig
     
-    init(config: GrpcClientConfig) {
+    init(config: ClientConfig) {
         self.config = config
     }
 

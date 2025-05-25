@@ -1,3 +1,3 @@
-enum DSCardSize {
+enum DSCardSize: String {
     case small, medium, large
 }

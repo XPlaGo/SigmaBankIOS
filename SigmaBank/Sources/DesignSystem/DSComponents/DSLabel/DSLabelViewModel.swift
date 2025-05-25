@@ -5,4 +5,5 @@ struct DSLabelViewModel {
     let style: DSLabelStyle
     let size: DSLabelSize
     let alignment: DSLabelTextAlignment
+    let hasSpacing: Bool
 }

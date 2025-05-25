@@ -1,3 +1,3 @@
-enum DSListStyle {
+enum DSListStyle: String {
     case ghost, content
 }

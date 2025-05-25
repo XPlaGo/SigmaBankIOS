@@ -50,7 +50,8 @@ class ConfirmationCodeViewController: UIViewController {
             text: "Enter confirmation code",
             style: .content,
             size: .headerSmall,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +92,8 @@ class ConfirmationCodeViewController: UIViewController {
             text: "",
             style: .danger,
             size: .bodyMedium,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false

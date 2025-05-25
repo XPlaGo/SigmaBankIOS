@@ -36,7 +36,8 @@ public class CardPrivateDataView: UIView {
             text: "****-****-****-****",
             style: .content,
             size: .bodyLarge,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +49,8 @@ public class CardPrivateDataView: UIView {
             text: "**/**",
             style: .content,
             size: .bodyLarge,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +62,8 @@ public class CardPrivateDataView: UIView {
             text: "***",
             style: .content,
             size: .bodyLarge,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false

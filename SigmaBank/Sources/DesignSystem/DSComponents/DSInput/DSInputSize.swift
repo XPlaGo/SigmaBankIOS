@@ -1,3 +1,3 @@
-enum DSInputSize {
+enum DSInputSize: String {
     case small, medium, large
 }

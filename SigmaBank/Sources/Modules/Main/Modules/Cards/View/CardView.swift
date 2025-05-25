@@ -29,7 +29,8 @@ public class CardView: UIView {
             text: "****",
             style: .primary,
             size: .labelLarge,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +42,8 @@ public class CardView: UIView {
             text: "*",
             style: .primary,
             size: .labelLarge,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
