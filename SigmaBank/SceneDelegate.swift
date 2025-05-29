@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: windowScene)
         
-        let clientConfig = GrpcClientConfig(host: "92.242.60.133", port: 80)
+        let clientConfig = NetworkConfiguration.grpcServer
 
         let authenticationClient = AuthenticationClient(config: clientConfig)
         let authenticationManager = AuthenticationManager()

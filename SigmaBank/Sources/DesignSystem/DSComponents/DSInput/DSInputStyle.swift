@@ -1,3 +1,3 @@
-enum DSInputStyle {
+enum DSInputStyle: String {
     case secondary, ghost, content
 }

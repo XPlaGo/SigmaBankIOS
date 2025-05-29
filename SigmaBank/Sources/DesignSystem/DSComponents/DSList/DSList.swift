@@ -43,6 +43,8 @@ class DSList: UIView {
     func configure(with viewModel: DSListViewModel) {
         self.viewModel = viewModel
         self.items = viewModel.items
+        
+        layoutMargins = .zero
 
         collectionView.register(DSListItem.self, forCellWithReuseIdentifier: viewModel.itemIdentifier)
 
@@ -53,8 +55,8 @@ class DSList: UIView {
             backgroundColor = DSColors.content
         }
 
-        layoutMargins = DSSpacings.List.padding(for: viewModel.size)
-
+        collectionView.contentInset = DSSpacings.List.padding(for: viewModel.size)
+    
         let layout = createLayout(viewModel: viewModel)
         collectionView.setCollectionViewLayout(layout, animated: false)
 
@@ -137,12 +139,20 @@ extension DSList: UICollectionViewDelegateFlowLayout {
             if viewModel?.itemLength == nil {
                 return (collectionViewLayout as? UICollectionViewFlowLayout)!.itemSize
             }
+            
+            let insets = DSSpacings.List.padding(for: viewModel!.size)
+            
             switch viewModel!.direction {
             case .vertical:
-                return CGSize(width: availableWidth, height: viewModel?.itemLength ?? UICollectionViewFlowLayout.automaticSize.height)
+                return CGSize(
+                    width: availableWidth - insets.left - insets.right,
+                    height: viewModel?.itemLength ?? UICollectionViewFlowLayout.automaticSize.height)
             case .horizontal:
-                return CGSize(width: viewModel?.itemLength ?? UICollectionViewFlowLayout.automaticSize.width, height: availableHeight)
+                return CGSize(
+                    width: viewModel?.itemLength ?? UICollectionViewFlowLayout.automaticSize.width,
+                    height: availableHeight - insets.top - insets.bottom)
             }
         }
     }
+
 }

@@ -2,6 +2,8 @@ import UIKit
 
 class DSButton: UIButton {
     
+    private var onTapAction: (() -> Void)?
+    
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
         spinner.hidesWhenStopped = true
@@ -91,6 +93,16 @@ class DSButton: UIButton {
         }
         
         self.configuration = config
+        
+        onTapAction = viewModel.onTap
+        
+        addTarget(self, action: #selector(onTapHandler), for: .touchUpInside)
+    }
+    
+    @objc private func onTapHandler() {
+        if let onTap = onTapAction {
+            onTap()
+        }
     }
     
 }

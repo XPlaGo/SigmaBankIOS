@@ -5,9 +5,9 @@ import GRPCNIOTransportHTTP2
 
 class AuthenticationClient: AuthenticationClientProtocol {
     
-    private var config: GrpcClientConfig
+    private var config: ClientConfig
     
-    init(config: GrpcClientConfig) {
+    init(config: ClientConfig) {
         self.config = config
     }
     

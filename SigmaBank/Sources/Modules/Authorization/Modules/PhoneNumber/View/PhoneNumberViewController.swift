@@ -51,7 +51,8 @@ class PhoneNumberViewController: UIViewController {
             text: "Enter phone number",
             style: .content,
             size: .headerSmall,
-            alignment: .center)
+            alignment: .center,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false

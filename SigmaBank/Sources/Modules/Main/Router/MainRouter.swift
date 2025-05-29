@@ -21,7 +21,7 @@ class MainRouter: MainRouterProtocol {
     }
     
     func getHistoryModule() -> UIViewController {
-        return UIViewController()
+        return BDBuilder().build(title: "History", path: "api/history")
     }
     
     func getMoreModule() -> UIViewController {

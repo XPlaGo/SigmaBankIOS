@@ -23,7 +23,7 @@ class DSLabel: UIView {
     }
     
     func configure(viewModel: DSLabelViewModel) {
-        layoutMargins = DSSpacings.Label.margin(for: viewModel.size)
+        layoutMargins = viewModel.hasSpacing ? DSSpacings.Label.margin(for: viewModel.size) : .zero
         
         label.text = viewModel.text
         label.font = DSFonts.labelFonts(for: viewModel.size)

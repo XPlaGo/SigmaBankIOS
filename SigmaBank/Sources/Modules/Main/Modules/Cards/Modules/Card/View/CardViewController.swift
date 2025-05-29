@@ -15,7 +15,8 @@ class CardViewController: UIViewController {
             text: "***\(card.cardNumber.value.suffix(4))",
             style: .primary,
             size: .headerLarge,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +36,8 @@ class CardViewController: UIViewController {
             text: text,
             style: .primary,
             size: .headerLarge,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +72,8 @@ class CardViewController: UIViewController {
             text: "Card Info",
             style: .ghost,
             size: .headerMedium,
-            alignment: .left)
+            alignment: .left,
+            hasSpacing: true)
         let view = DSLabel()
         view.configure(viewModel: viewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
